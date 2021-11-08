@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/head :: head_fragment(title = '業務履歴登録画面', scripts = ~{::script}, links = ~{::link})"></head>
+<body>
+	<div class="container">
+		<p>業務履歴を記載の上、「確認」ボタンを押下してください。</p>
+		<br/>
+		<form th:action="@{/user/output}" th:object="${whForm}" method="post">
+			<label>社員番号：</label>&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="text" th:value="*{employeeNumber}" th:field="*{employeeNumber}" >
+			<br><br>
+			<label>年齢：</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="text" name="age">
+			<br><br>
+			<label>性別：</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<for th:each="item : *{getSexItems()}">
+	        <input type="radio" th:value="${item.key}" th:text="${item.value}" th:field="*{sex}" />
+	    	</for>
+			<br><br>
+			<label>入社年月日：</label>
+			<input type="text" th:value="*{dateEmploymentYear}" size="4" maxlength="4" th:field="*{dateEmploymentYear}" />年
+	    	<select th:field="*{dateEmploymentMonth}">
+		        <option value="">---</option>
+		        <option th:each="item : *{getMonthItems()}" th:value="${item.key}" th:text="${item.value}"/>
+			</select>月
+			<select th:field="*{dateEmploymentDay}">
+		        <option value="">---</option>
+		        <option th:each="item : *{getDayItems()}" th:value="${item.key}" th:text="${item.value}"/>
+	    	</select>日
+	    	<br><br>
+			<p><input type="submit" value="確定" ></p>
+		</form>
+		<div class="text-center">
+	      <a href="/user/info" class="btn btn-secondary">戻る</a>
+	    </div>
+<!--
+		<form method="post" th:action="@{/logout}">
+		     <input type="submit" value="logout" class="btn btn-secondary">
+		</form>
+-->
+	 </div>
+</body>
+</html>

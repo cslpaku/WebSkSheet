@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/head :: head_fragment(title = '基本情報画面', scripts = ~{::script}, links = ~{::link})"></head>
+<head>
+</head>
+<body>
+	<div class="container">
+		<p th:text="${userName} + '様'"><span class="example"></span></p>
+		<!-- <p th:text="${employeeNumber} + '様'"><span class="example"></span></p> -->
+		<div class="float-end">
+	      <a th:href="@{/user/input}">業務履歴登録</a>
+	    </div><br>
+	    <div class="float-end">
+	      <a th:href="@{/user/admin}">社員一覧</a>
+	    </div>
+<!--
+		<p><a th:href="@{/user/input}">業務履歴登録画面へ</a></p>
+	    <p><a th:href="@{/user/admin}">社員一覧</a></p>
+ -->
+		<br><br>
+		<form method="post" th:action="@{/logout}">
+		     <input type="submit" value="ログアウト" class="btn btn-secondary">
+		</form>
+	</div>
+</body>
+</html>

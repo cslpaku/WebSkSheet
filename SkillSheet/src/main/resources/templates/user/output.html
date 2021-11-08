@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/head :: head_fragment(title = '業務履歴詳細画面', scripts = ~{::script}, links = ~{::link})"></head>
+<body>
+	<div class="container">
+		<h3>業務履歴詳細詳細</h3>
+		<form th:action="@{/user/input}" th:object="${whForm}" method="post">
+			<div th:object="${whForm}">
+				<p th:text="'社員番号： ' + *{employeeNumber}"></p>
+				<p th:text="'年齢： ' + *{age}"></p>
+				<p th:text="'性別： ' + *{getSexItems().get('__*{sex}__')}"></p>
+				<p th:text="'生年月日： ' + *{dateEmploymentYear} + '年'
+                     + *{getMonthItems().get('__*{dateEmploymentMonth}__')} + '月'
+                     + *{getDayItems().get('__*{dateEmploymentDay}__')} + '日'"></p>
+			</div>
+			<input type="submit" value="Excel出力" />
+			<div class="text-center">
+      			<a href="/user/input" class="btn btn-secondary">戻る</a>
+    		</div>
+<!--
+			<input type="button" value="戻る" onclick="history.back();" />
+ -->
+		</form>
+	</div>
+
+</body>
+</html>
